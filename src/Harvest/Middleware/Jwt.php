@@ -11,6 +11,7 @@ namespace DecodeLabs\Harvest\Middleware;
 
 use DecodeLabs\Cipher\Codec;
 use DecodeLabs\Cipher\Config;
+use DecodeLabs\Cipher\Payload;
 use DecodeLabs\Harvest;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
@@ -55,6 +56,16 @@ class Jwt implements Middleware
         Request $request,
         Handler $next
     ): Response {
+        // Already done previously
+        if (
+            $request->getAttribute('jwt.payload') instanceof Payload ||
+            $request->getAttribute('jwt.error') !== null
+        ) {
+            return $next->handle($request);
+        }
+
+
+        // Get token from request
         if (!$token = $this->getToken($request)) {
             if ($this->required) {
                 return Harvest::json([
@@ -67,6 +78,8 @@ class Jwt implements Middleware
             return $next->handle($request);
         }
 
+
+        // Decode token
         $codec = new Codec($this->config);
 
         try {
