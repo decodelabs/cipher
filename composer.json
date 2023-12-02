@@ -13,15 +13,15 @@
         "decodelabs/archetype": "^0.2.21",
         "decodelabs/coercion": "^0.2.8",
         "decodelabs/exceptional": "^0.4.4",
-        "decodelabs/glitch-support": "^0.4.5"
+        "decodelabs/glitch-support": "^0.4.5",
+
+        "firebase/php-jwt": "^6.9"
     },
     "require-dev": {
         "decodelabs/dovetail": "^0.2.0",
         "decodelabs/glitch": "^0.18.10",
         "decodelabs/harvest": "^0.2.10",
-        "decodelabs/phpstan-decodelabs": "^0.6.7",
-
-        "firebase/php-jwt": "^6.9"
+        "decodelabs/phpstan-decodelabs": "^0.6.7"
     },
     "autoload": {
         "psr-4": {
