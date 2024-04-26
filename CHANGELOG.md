@@ -1,3 +1,5 @@
+* Updated dependency list
+
 ## v0.1.1 (2023-12-02)
 * Moved JWT to required dependencies
 
