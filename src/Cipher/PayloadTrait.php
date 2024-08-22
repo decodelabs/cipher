@@ -9,10 +9,12 @@ declare(strict_types=1);
 
 namespace DecodeLabs\Cipher;
 
-use ArrayAccess;
 use DateTime;
 use DecodeLabs\Coercion;
 
+/**
+ * @phpstan-require-implements Payload
+ */
 trait PayloadTrait
 {
     /**
