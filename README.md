@@ -77,7 +77,7 @@ class MySecureAction implements Action
 {
     use ByMethodTrait;
 
-    public const MIDDLEWARE = [
+    public const Middleware = [
         'Jwt' => [
             'required' => true
         ]
