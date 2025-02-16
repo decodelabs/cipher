@@ -77,11 +77,13 @@ class Supabase implements Payload
     /**
      * Get metadata
      *
-     * @return array<string, mixed>
+     * @return array<string,mixed>
      */
     public function getMetadata(): array
     {
-        return Coercion::toArray($this->data['user_metadata'] ?? []);
+        /** @var array<string,mixed> $output */
+        $output = Coercion::toArray($this->data['user_metadata'] ?? []);
+        return $output;
     }
 
 
