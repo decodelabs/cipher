@@ -30,36 +30,20 @@ class Cipher implements Config, ConfigInterface
         ];
     }
 
-    /**
-     * Get secret
-     */
-    public function getSecret(): string
-    {
-        return $this->data->secret->as('string');
+    public string $secret {
+        get => $this->data->secret->as('string');
     }
 
-    /**
-     * Get algorithm
-     */
-    public function getAlgorithm(): string
-    {
-        return $this->data->algorithm->as('string');
+    public string $algorithm {
+        get => $this->data->algorithm->as('string');
     }
 
 
-    /**
-     * Get query param name
-     */
-    public function getQueryParamName(): ?string
-    {
-        return $this->data->queryParamName->as('?string');
+    public ?string $queryParamName {
+        get => $this->data->queryParamName->as('?string');
     }
 
-    /**
-     * Get cookie name
-     */
-    public function getCookieName(): ?string
-    {
-        return $this->data->cookieName->as('?string');
+    public ?string $cookieName {
+        get => $this->data->cookieName->as('?string');
     }
 }

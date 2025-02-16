@@ -12,16 +12,22 @@ namespace DecodeLabs\Harvest\Middleware;
 use DecodeLabs\Cipher\Codec;
 use DecodeLabs\Cipher\Config;
 use DecodeLabs\Cipher\Payload;
+use DecodeLabs\Coercion;
 use DecodeLabs\Harvest;
+use DecodeLabs\Tightrope\RequiredSet;
+use DecodeLabs\Tightrope\RequiredSetTrait;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Server\MiddlewareInterface as Middleware;
 use Psr\Http\Server\RequestHandlerInterface as Handler;
 use Throwable;
 
-class Jwt implements Middleware
+class Jwt implements
+    Middleware,
+    RequiredSet
 {
-    protected bool $required = false;
+    use RequiredSetTrait;
+
     protected Config $config;
 
     public function __construct(
@@ -30,23 +36,6 @@ class Jwt implements Middleware
     ) {
         $this->config = $config;
         $this->required = $required;
-    }
-
-    /**
-     * Set required
-     */
-    public function setRequired(
-        bool $required
-    ): void {
-        $this->required = $required;
-    }
-
-    /**
-     * Is required
-     */
-    public function isRequired(): bool
-    {
-        return $this->required;
     }
 
     /**
@@ -108,21 +97,21 @@ class Jwt implements Middleware
         Request $request
     ): ?string {
         // Query params
-        if (null !== ($name = $this->config->getQueryParamName())) {
+        if (null !== ($name = $this->config->queryParamName)) {
             $params = $request->getQueryParams();
 
             if (isset($params[$name])) {
-                return $params[$name];
+                return Coercion::toString($params[$name]);
             }
         }
 
 
         // Cookies
-        if (null !== ($name = $this->config->getCookieName())) {
+        if (null !== ($name = $this->config->cookieName)) {
             $cookies = $request->getCookieParams();
 
             if (isset($cookies[$name])) {
-                return $cookies[$name];
+                return Coercion::toString($cookies[$name]);
             }
         }
 

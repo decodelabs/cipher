@@ -41,8 +41,8 @@ class Codec
     ): string {
         return JwtLib::encode(
             $payload->toArray(),
-            $this->config->getSecret(),
-            $this->config->getAlgorithm()
+            $this->config->secret,
+            $this->config->algorithm
         );
     }
 
@@ -56,8 +56,8 @@ class Codec
         $data = json_decode((string)json_encode(JwtLib::decode(
             $token,
             new JwtKey(
-                $this->config->getSecret(),
-                $this->config->getAlgorithm()
+                $this->config->secret,
+                $this->config->algorithm
             )
         )), true);
 

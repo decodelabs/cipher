@@ -38,57 +38,16 @@ interface Payload extends
         string $issuer
     ): bool;
 
-    /**
-     * Get issuer
-     */
-    public function getIssuer(): ?string;
-
-    /**
-     * Get subject
-     */
-    public function getSubject(): ?string;
-
-    /**
-     * Get audience
-     */
-    public function getAudience(): ?string;
-
-    /**
-     * Get expiration
-     */
-    public function getExpirationDate(): ?DateTime;
-
-    /**
-     * Get expiration
-     */
-    public function getExpiration(): ?int;
-
-    /**
-     * Get not before
-     */
-    public function getNotBeforeDate(): ?DateTime;
-
-    /**
-     * Get not before
-     */
-    public function getNotBefore(): ?int;
-
-    /**
-     * Get issued at
-     */
-    public function getIssuedAtDate(): ?DateTime;
-
-    /**
-     * Get issued at
-     */
-    public function getIssuedAt(): ?int;
-
-    /**
-     * Get JWT ID
-     */
-    public function getJwtId(): ?string;
-
-
+    public ?string $issuer { get; }
+    public ?string $subject { get; }
+    public ?string $audience { get; }
+    public ?DateTime $expirationDate { get; }
+    public ?int $expiration { get; }
+    public ?DateTime $notBeforeDate { get; }
+    public ?int $notBefore { get; }
+    public ?DateTime $issuedAtDate { get; }
+    public ?int $issuedAt { get; }
+    public ?string $jwtId { get; }
 
     /**
      * Get data

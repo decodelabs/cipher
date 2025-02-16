@@ -9,16 +9,77 @@ declare(strict_types=1);
 
 namespace DecodeLabs\Cipher;
 
-use ArrayAccess;
 use DateTime;
 use DecodeLabs\Coercion;
 
+/**
+ * @phpstan-require-implements Payload
+ */
 trait PayloadTrait
 {
     /**
      * @var array<string, mixed>
      */
     protected array $data = [];
+
+
+    public ?string $issuer {
+        get => Coercion::toStringOrNull($this->data['iss'] ?? null, true);
+    }
+
+    public ?string $subject {
+        get => Coercion::toStringOrNull($this->data['sub'] ?? null, true);
+    }
+
+    public ?string $audience {
+        get => Coercion::toStringOrNull($this->data['aud'] ?? null, true);
+    }
+
+    public ?DateTime $expirationDate {
+        get {
+            if (null === ($timestamp = $this->expiration)) {
+                return null;
+            }
+
+            return new DateTime('@' . $timestamp);
+        }
+    }
+
+    public ?int $expiration {
+        get => Coercion::toIntOrNull($this->data['exp'] ?? null);
+    }
+
+    public ?DateTime $notBeforeDate {
+        get {
+            if (null === ($timestamp = $this->notBefore)) {
+                return null;
+            }
+
+            return new DateTime('@' . $timestamp);
+        }
+    }
+
+    public ?int $notBefore {
+        get => Coercion::toIntOrNull($this->data['nbf'] ?? null);
+    }
+
+    public ?DateTime $issuedAtDate {
+        get {
+            if (null === ($timestamp = $this->issuedAt)) {
+                return null;
+            }
+
+            return new DateTime('@' . $timestamp);
+        }
+    }
+
+    public ?int $issuedAt {
+        get => Coercion::toIntOrNull($this->data['iat'] ?? null);
+    }
+
+    public ?string $jwtId {
+        get => Coercion::toStringOrNull($this->data['jti'] ?? null, true);
+    }
 
 
     /**
@@ -29,104 +90,6 @@ trait PayloadTrait
     ) {
         $this->data = $data;
     }
-
-
-
-    /**
-     * Get issuer
-     */
-    public function getIssuer(): ?string
-    {
-        return Coercion::toStringOrNull($this->data['iss'] ?? null, true);
-    }
-
-    /**
-     * Get subject
-     */
-    public function getSubject(): ?string
-    {
-        return Coercion::toStringOrNull($this->data['sub'] ?? null, true);
-    }
-
-    /**
-     * Get audience
-     */
-    public function getAudience(): ?string
-    {
-        return Coercion::toStringOrNull($this->data['aud'] ?? null, true);
-    }
-
-    /**
-     * Get expiration
-     */
-    public function getExpirationDate(): ?DateTime
-    {
-        if (null === ($timestamp = $this->getExpiration())) {
-            return null;
-        }
-
-        return new DateTime('@' . $timestamp);
-    }
-
-    /**
-     * Get expiration
-     */
-    public function getExpiration(): ?int
-    {
-        return Coercion::toIntOrNull($this->data['exp'] ?? null);
-    }
-
-    /**
-     * Get not before
-     */
-    public function getNotBeforeDate(): ?DateTime
-    {
-        if (null === ($timestamp = $this->getNotBefore())) {
-            return null;
-        }
-
-        return new DateTime('@' . $timestamp);
-    }
-
-    /**
-     * Get not before
-     */
-    public function getNotBefore(): ?int
-    {
-        return Coercion::toIntOrNull($this->data['nbf'] ?? null);
-    }
-
-    /**
-     * Get issued at
-     */
-    public function getIssuedAtDate(): ?DateTime
-    {
-        if (null === ($timestamp = $this->getIssuedAt())) {
-            return null;
-        }
-
-        return new DateTime('@' . $timestamp);
-    }
-
-    /**
-     * Get issued at
-     */
-    public function getIssuedAt(): ?int
-    {
-        return Coercion::toIntOrNull($this->data['iat'] ?? null);
-    }
-
-    /**
-     * Get JWT ID
-     */
-    public function getJwtId(): ?string
-    {
-        return Coercion::toStringOrNull($this->data['jti'] ?? null, true);
-    }
-
-
-
-
 
     /**
      * Get data
