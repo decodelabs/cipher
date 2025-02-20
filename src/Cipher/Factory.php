@@ -23,7 +23,7 @@ class Factory
     public function createPayload(
         array $data
     ): Payload {
-        $issuer = Coercion::toStringOrNull($data['iss'] ?? null);
+        $issuer = Coercion::tryString($data['iss'] ?? null);
 
         if ($issuer !== null) {
             foreach (Archetype::scanClasses(Payload::class) as $class) {

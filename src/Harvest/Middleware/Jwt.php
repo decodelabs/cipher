@@ -101,7 +101,7 @@ class Jwt implements
             $params = $request->getQueryParams();
 
             if (isset($params[$name])) {
-                return Coercion::toString($params[$name]);
+                return Coercion::asString($params[$name]);
             }
         }
 
@@ -111,7 +111,7 @@ class Jwt implements
             $cookies = $request->getCookieParams();
 
             if (isset($cookies[$name])) {
-                return Coercion::toString($cookies[$name]);
+                return Coercion::asString($cookies[$name]);
             }
         }
 

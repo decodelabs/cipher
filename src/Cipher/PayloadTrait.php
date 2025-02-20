@@ -24,15 +24,15 @@ trait PayloadTrait
 
 
     public ?string $issuer {
-        get => Coercion::toStringOrNull($this->data['iss'] ?? null, true);
+        get => Coercion::tryString($this->data['iss'] ?? null, true);
     }
 
     public ?string $subject {
-        get => Coercion::toStringOrNull($this->data['sub'] ?? null, true);
+        get => Coercion::tryString($this->data['sub'] ?? null, true);
     }
 
     public ?string $audience {
-        get => Coercion::toStringOrNull($this->data['aud'] ?? null, true);
+        get => Coercion::tryString($this->data['aud'] ?? null, true);
     }
 
     public ?DateTime $expirationDate {
@@ -46,7 +46,7 @@ trait PayloadTrait
     }
 
     public ?int $expiration {
-        get => Coercion::toIntOrNull($this->data['exp'] ?? null);
+        get => Coercion::tryInt($this->data['exp'] ?? null);
     }
 
     public ?DateTime $notBeforeDate {
@@ -60,7 +60,7 @@ trait PayloadTrait
     }
 
     public ?int $notBefore {
-        get => Coercion::toIntOrNull($this->data['nbf'] ?? null);
+        get => Coercion::tryInt($this->data['nbf'] ?? null);
     }
 
     public ?DateTime $issuedAtDate {
@@ -74,11 +74,11 @@ trait PayloadTrait
     }
 
     public ?int $issuedAt {
-        get => Coercion::toIntOrNull($this->data['iat'] ?? null);
+        get => Coercion::tryInt($this->data['iat'] ?? null);
     }
 
     public ?string $jwtId {
-        get => Coercion::toStringOrNull($this->data['jti'] ?? null, true);
+        get => Coercion::tryString($this->data['jti'] ?? null, true);
     }
 
 
