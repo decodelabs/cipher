@@ -32,7 +32,7 @@ class Supabase implements Payload
      */
     public function getEmail(): ?string
     {
-        return Coercion::toStringOrNull($this->data['email'] ?? null, true);
+        return Coercion::tryString($this->data['email'] ?? null, true);
     }
 
     /**
@@ -40,7 +40,7 @@ class Supabase implements Payload
      */
     public function getPhone(): ?string
     {
-        return Coercion::toStringOrNull($this->data['phone'] ?? null, true);
+        return Coercion::tryString($this->data['phone'] ?? null, true);
     }
 
     /**
@@ -52,7 +52,7 @@ class Supabase implements Payload
             return null;
         }
 
-        return Coercion::toStringOrNull($this->data['app_metadata']['provider'] ?? null, true);
+        return Coercion::tryString($this->data['app_metadata']['provider'] ?? null, true);
     }
 
     /**
@@ -70,7 +70,7 @@ class Supabase implements Payload
         }
 
         /** @var array<string> $output */
-        $output = Coercion::toArray($this->data['app_metadata']['providers']);
+        $output = Coercion::asArray($this->data['app_metadata']['providers']);
         return $output;
     }
 
@@ -82,7 +82,7 @@ class Supabase implements Payload
     public function getMetadata(): array
     {
         /** @var array<string,mixed> $output */
-        $output = Coercion::toArray($this->data['user_metadata'] ?? []);
+        $output = Coercion::asArray($this->data['user_metadata'] ?? []);
         return $output;
     }
 
@@ -92,7 +92,7 @@ class Supabase implements Payload
      */
     public function getRole(): ?string
     {
-        return Coercion::toStringOrNull($this->data['role'] ?? null, true);
+        return Coercion::tryString($this->data['role'] ?? null, true);
     }
 
     /**
@@ -100,7 +100,7 @@ class Supabase implements Payload
      */
     public function getAssuranceLevel(): ?string
     {
-        return Coercion::toStringOrNull($this->data['aal'] ?? null, true);
+        return Coercion::tryString($this->data['aal'] ?? null, true);
     }
 
     /**
@@ -112,7 +112,7 @@ class Supabase implements Payload
             return null;
         }
 
-        return Coercion::toStringOrNull($this->data['amr']['method'] ?? null, true);
+        return Coercion::tryString($this->data['amr']['method'] ?? null, true);
     }
 
     /**
@@ -136,7 +136,7 @@ class Supabase implements Payload
             return null;
         }
 
-        return Coercion::toIntOrNull($this->data['amr']['timestamp'] ?? null);
+        return Coercion::tryInt($this->data['amr']['timestamp'] ?? null);
     }
 
     /**
@@ -144,6 +144,6 @@ class Supabase implements Payload
      */
     public function getSessionId(): ?string
     {
-        return Coercion::toStringOrNull($this->data['session_id'] ?? null, true);
+        return Coercion::tryString($this->data['session_id'] ?? null, true);
     }
 }
