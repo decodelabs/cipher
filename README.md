@@ -11,8 +11,6 @@
 
 Cipher provides an integrated suite of tools for working with JWTs, including a simple interface for creating and verifying tokens, and a set of middleware for use with [Harvest](https://github.com/decodelabs/harvest), [Greenleaf](https://github.com/decodelabs/greenleaf), or any other PSR-15 compatible middleware stack.
 
-_Get news and updates on the [DecodeLabs blog](https://blog.decodelabs.com)._
-
 ---
 
 ## Installation
