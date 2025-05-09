@@ -1,3 +1,6 @@
+## v0.2.2 (2025-05-09)
+* Upgraded Harvest to v0.5.0
+
 ## v0.2.1 (2025-02-20)
 * Upgraded Coercion dependency
 
