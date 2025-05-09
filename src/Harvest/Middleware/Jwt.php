@@ -14,19 +14,28 @@ use DecodeLabs\Cipher\Config;
 use DecodeLabs\Cipher\Payload;
 use DecodeLabs\Coercion;
 use DecodeLabs\Harvest;
+use DecodeLabs\Harvest\Middleware as HarvestMiddleware;
+use DecodeLabs\Harvest\MiddlewareGroup;
 use DecodeLabs\Tightrope\RequiredSet;
 use DecodeLabs\Tightrope\RequiredSetTrait;
-use Psr\Http\Message\ResponseInterface as Response;
-use Psr\Http\Message\ServerRequestInterface as Request;
-use Psr\Http\Server\MiddlewareInterface as Middleware;
-use Psr\Http\Server\RequestHandlerInterface as Handler;
+use Psr\Http\Message\ResponseInterface as PsrResponse;
+use Psr\Http\Message\ServerRequestInterface as PsrRequest;
+use Psr\Http\Server\RequestHandlerInterface as PsrHandler;
 use Throwable;
 
 class Jwt implements
-    Middleware,
+    HarvestMiddleware,
     RequiredSet
 {
     use RequiredSetTrait;
+
+    public MiddlewareGroup $group {
+        get => MiddlewareGroup::Inbound;
+    }
+
+    public int $priority {
+        get => 10;
+    }
 
     protected Config $config;
 
@@ -42,9 +51,9 @@ class Jwt implements
      * Process request
      */
     public function process(
-        Request $request,
-        Handler $next
-    ): Response {
+        PsrRequest $request,
+        PsrHandler $next
+    ): PsrResponse {
         // Already done previously
         if (
             $request->getAttribute('jwt.payload') instanceof Payload ||
@@ -94,7 +103,7 @@ class Jwt implements
      * Get token from query or header
      */
     protected function getToken(
-        Request $request
+        PsrRequest $request
     ): ?string {
         // Query params
         if (null !== ($name = $this->config->queryParamName)) {
