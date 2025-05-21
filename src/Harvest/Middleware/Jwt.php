@@ -16,19 +16,13 @@ use DecodeLabs\Coercion;
 use DecodeLabs\Harvest;
 use DecodeLabs\Harvest\Middleware as HarvestMiddleware;
 use DecodeLabs\Harvest\MiddlewareGroup;
-use DecodeLabs\Tightrope\RequiredSet;
-use DecodeLabs\Tightrope\RequiredSetTrait;
 use Psr\Http\Message\ResponseInterface as PsrResponse;
 use Psr\Http\Message\ServerRequestInterface as PsrRequest;
 use Psr\Http\Server\RequestHandlerInterface as PsrHandler;
 use Throwable;
 
-class Jwt implements
-    HarvestMiddleware,
-    RequiredSet
+class Jwt implements HarvestMiddleware
 {
-    use RequiredSetTrait;
-
     public MiddlewareGroup $group {
         get => MiddlewareGroup::Inbound;
     }
@@ -37,6 +31,7 @@ class Jwt implements
         get => 10;
     }
 
+    public bool $required;
     protected Config $config;
 
     public function __construct(
