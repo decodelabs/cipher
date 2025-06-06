@@ -11,6 +11,7 @@ namespace DecodeLabs\Cipher;
 
 use DateTime;
 use DecodeLabs\Coercion;
+use DecodeLabs\Nuance\Entity\NativeObject as NuanceEntity;
 
 /**
  * @phpstan-require-implements Payload
@@ -159,11 +160,10 @@ trait PayloadTrait
     }
 
 
-    /**
-     * Dump for glitch
-     */
-    public function glitchDump(): iterable
+    public function toNuanceEntity(): NuanceEntity
     {
-        yield 'values' => $this->data;
+        $entity = new NuanceEntity($this);
+        $entity->values = $this->data;
+        return $entity;
     }
 }

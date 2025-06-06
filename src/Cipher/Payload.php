@@ -11,7 +11,7 @@ namespace DecodeLabs\Cipher;
 
 use ArrayAccess;
 use DateTime;
-use DecodeLabs\Glitch\Dumpable;
+use DecodeLabs\Nuance\Dumpable;
 use JsonSerializable;
 
 /**

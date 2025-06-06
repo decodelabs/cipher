@@ -11,15 +11,15 @@
     "require": {
         "php": "^8.4",
 
-        "decodelabs/archetype": "^0.3",
-        "decodelabs/coercion": "^0.3",
-        "decodelabs/glitch-support": "^0.5",
+        "decodelabs/archetype": "^0.3.10",
+        "decodelabs/coercion": "^0.3.3",
+        "decodelabs/nuance": "^0.1.2",
 
-        "firebase/php-jwt": "^6.9"
+        "firebase/php-jwt": "^6.11.1"
     },
     "require-dev": {
-        "decodelabs/dovetail": "^0.2.0",
-        "decodelabs/harvest": "^0.5",
+        "decodelabs/dovetail": "^0.2.14",
+        "decodelabs/harvest": "^0.5.4",
         "decodelabs/phpstan-decodelabs": "^0.7"
     },
     "conflict": {
