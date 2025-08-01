@@ -19,7 +19,7 @@
     },
     "require-dev": {
         "decodelabs/dovetail": "^0.2.14",
-        "decodelabs/harvest": "^0.5.4",
+        "decodelabs/harvest": "^0.6",
         "decodelabs/phpstan-decodelabs": "^0.7"
     },
     "conflict": {
