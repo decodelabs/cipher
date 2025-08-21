@@ -5,10 +5,18 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## Unreleased
+--
+
+---
+
+### [v0.3.0](https://github.com/decodelabs/cipher/commits/v0.3.0) - 21st August 2025
+
 - Refactored into Kingdom Service architecture
 - Use Archetype as a Service
 - Converted Supabase getters to property hooks
 - Upgraded Dovetail to v0.6
+
+[Full list of changes](https://github.com/decodelabs/cipher/compare/v0.2.5...v0.3.0)
 
 ---
 
