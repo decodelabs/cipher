@@ -9,6 +9,7 @@ declare(strict_types=1);
 
 namespace DecodeLabs\Cipher;
 
+use DecodeLabs\Slingshot;
 use Firebase\JWT\JWT as JwtLib;
 use Firebase\JWT\Key as JwtKey;
 
@@ -17,9 +18,6 @@ class Codec
     protected Config $config;
     protected Factory $factory;
 
-    /**
-     * Init with config
-     */
     public function __construct(
         Config $config,
         ?Factory $factory = null
@@ -27,15 +25,12 @@ class Codec
         $this->config = $config;
 
         if (!$factory) {
-            $factory = new Factory();
+            $factory = new Slingshot()->resolveInstance(Factory::class);
         }
 
         $this->factory = $factory;
     }
 
-    /**
-     * Encode data
-     */
     public function encode(
         Payload $payload
     ): string {
@@ -46,9 +41,6 @@ class Codec
         );
     }
 
-    /**
-     * Decode data
-     */
     public function decode(
         string $token
     ): Payload {

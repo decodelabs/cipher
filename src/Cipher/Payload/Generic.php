@@ -16,9 +16,6 @@ class Generic implements Payload
 {
     use PayloadTrait;
 
-    /**
-     * Accepts issuer
-     */
     public static function acceptsIssuer(
         string $issuer
     ): bool {

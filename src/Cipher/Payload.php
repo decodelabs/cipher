@@ -23,17 +23,12 @@ interface Payload extends
     Dumpable
 {
     /**
-     * Init with data
-     *
      * @param array<string, mixed> $data
      */
     public function __construct(
         array $data = []
     );
 
-    /**
-     * Accepts issuer
-     */
     public static function acceptsIssuer(
         string $issuer
     ): bool;
@@ -50,9 +45,7 @@ interface Payload extends
     public ?string $jwtId { get; }
 
     /**
-     * Get data
-     *
-     * @return array<string, mixed>
+     * @return array<string,mixed>
      */
     public function toArray(): array;
 }

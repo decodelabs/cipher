@@ -13,9 +13,9 @@ use DecodeLabs\Cipher\Codec;
 use DecodeLabs\Cipher\Config;
 use DecodeLabs\Cipher\Payload;
 use DecodeLabs\Coercion;
-use DecodeLabs\Harvest;
 use DecodeLabs\Harvest\Middleware as HarvestMiddleware;
 use DecodeLabs\Harvest\MiddlewareGroup;
+use DecodeLabs\Harvest\Response\Json as JsonResponse;
 use Psr\Http\Message\ResponseInterface as PsrResponse;
 use Psr\Http\Message\ServerRequestInterface as PsrRequest;
 use Psr\Http\Server\RequestHandlerInterface as PsrHandler;
@@ -42,9 +42,6 @@ class Jwt implements HarvestMiddleware
         $this->required = $required;
     }
 
-    /**
-     * Process request
-     */
     public function process(
         PsrRequest $request,
         PsrHandler $next
@@ -61,7 +58,7 @@ class Jwt implements HarvestMiddleware
         // Get token from request
         if (!$token = $this->getToken($request)) {
             if ($this->required) {
-                return Harvest::json([
+                return new JsonResponse([
                     'status' => 'unauthorized',
                     'message' => 'No token provided'
                 ], 401);
@@ -80,7 +77,7 @@ class Jwt implements HarvestMiddleware
             $request = $request->withAttribute('jwt.payload', $payload);
         } catch (Throwable $e) {
             if ($this->required) {
-                return Harvest::json([
+                return new JsonResponse([
                     'status' => 'unauthorized',
                     'message' => $e->getMessage()
                 ], 401);
@@ -94,9 +91,6 @@ class Jwt implements HarvestMiddleware
 
 
 
-    /**
-     * Get token from query or header
-     */
     protected function getToken(
         PsrRequest $request
     ): ?string {

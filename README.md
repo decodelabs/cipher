@@ -33,10 +33,11 @@ The config defines what secret and algorithm is used.
 ```php
 use DecodeLabs\Cipher\Codec;
 use DecodeLabs\Dovetail;
+use DecodeLabs\Monarch;
 
-$codec = new Codec(
-    Dovetail::load('Cipher')
-);
+$dovetail = Monarch::getService(Dovetail::class);
+$config = $dovetail->load('Cipher');
+$codec = new Codec($config);
 
 $payload = $codec->decode($token);
 ```
@@ -68,8 +69,7 @@ If using [Greenleaf](https://github.com/decodelabs/greenleaf), the payload can b
 use DecodeLabs\Cipher\Payload\Supabase;
 use DecodeLabs\Greenleaf\Action;
 use DecodeLabs\Greenleaf\Action\ByMethodTrait;
-use DecodeLabs\Harvest;
-use DecodeLabs\Harvest\Response;
+use DecodeLabs\Harvest\Response\Json as JsonResponse;
 
 class MySecureAction implements Action
 {
@@ -82,9 +82,9 @@ class MySecureAction implements Action
     ];
 
     public function get(
-        Supabase $payload
-    ): Response {
-        return Harvest::json([
+        Supabase $payload,
+    ): JsonResponse {
+        return new JsonResponse([
             'email' => $payload->getEmail()
         ]);
     }

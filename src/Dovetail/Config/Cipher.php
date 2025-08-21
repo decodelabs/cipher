@@ -17,13 +17,10 @@ class Cipher implements Config, ConfigInterface
 {
     use ConfigTrait;
 
-    /**
-     * Get default values
-     */
     public static function getDefaultValues(): array
     {
         return [
-            'secret' => "{{envString('CIPHER_SECRET')}}",
+            'secret' => "{{Env::tryString('CIPHER_SECRET')}}",
             'algorithm' => 'HS256',
             'queryParamName' => 'jwt',
             'cookieName' => 'jwt'

@@ -15,10 +15,13 @@ use DecodeLabs\Coercion;
 
 class Factory
 {
+    public function __construct(
+        protected Archetype $archetype
+    ) {
+    }
+
     /**
-     * Create payload
-     *
-     * @param array<string, mixed> $data
+     * @param array<string,mixed> $data
      */
     public function createPayload(
         array $data
@@ -26,7 +29,7 @@ class Factory
         $issuer = Coercion::tryString($data['iss'] ?? null);
 
         if ($issuer !== null) {
-            foreach (Archetype::scanClasses(Payload::class) as $class) {
+            foreach ($this->archetype->scanClasses(Payload::class) as $class) {
                 if ($class === Generic::class) {
                     continue;
                 }

@@ -19,7 +19,7 @@ use DecodeLabs\Nuance\Entity\NativeObject as NuanceEntity;
 trait PayloadTrait
 {
     /**
-     * @var array<string, mixed>
+     * @var array<string,mixed>
      */
     protected array $data = [];
 
@@ -83,9 +83,6 @@ trait PayloadTrait
     }
 
 
-    /**
-     * Init with data
-     */
     public function __construct(
         array $data = []
     ) {
@@ -93,8 +90,6 @@ trait PayloadTrait
     }
 
     /**
-     * Get data
-     *
      * @return array<string, mixed>
      */
     public function toArray(): array
@@ -103,8 +98,6 @@ trait PayloadTrait
     }
 
     /**
-     * Json serialize
-     *
      * @return array<string, mixed>
      */
     public function jsonSerialize(): array
@@ -114,8 +107,6 @@ trait PayloadTrait
 
 
     /**
-     * ArrayAccess: offset exists
-     *
      * @param string $offset
      */
     public function offsetExists(
@@ -125,8 +116,6 @@ trait PayloadTrait
     }
 
     /**
-     * ArrayAccess: offset get
-     *
      * @param string $offset
      */
     public function offsetGet(
@@ -136,8 +125,6 @@ trait PayloadTrait
     }
 
     /**
-     * ArrayAccess: offset set
-     *
      * @param string $offset
      * @param mixed $value
      */
@@ -149,8 +136,6 @@ trait PayloadTrait
     }
 
     /**
-     * ArrayAccess: offset unset
-     *
      * @param string $offset
      */
     public function offsetUnset(
