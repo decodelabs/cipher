@@ -15,6 +15,8 @@ Cipher provides an integrated suite of tools for working with JWTs, including a 
 
 ## Installation
 
+This package requires PHP 8.4 or higher.
+
 Install via Composer:
 
 ```bash
