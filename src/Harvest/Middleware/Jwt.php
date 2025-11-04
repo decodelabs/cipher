@@ -1,8 +1,8 @@
 <?php
 
 /**
- * @package Cipher
- * @license http://opensource.org/licenses/MIT
+ * Cipher
+ * @license https://opensource.org/licenses/MIT
  */
 
 declare(strict_types=1);
