@@ -2,12 +2,14 @@
     "name": "decodelabs/cipher",
     "description": "Tools and systems to interact with JWTs",
     "type": "library",
-    "keywords": [ ],
+    "keywords": [],
     "license": "MIT",
-    "authors": [ {
+    "authors": [
+        {
             "name": "Tom Wright",
             "email": "tom@inflatablecookie.com"
-        } ],
+        }
+    ],
     "require": {
         "php": "^8.4",
 
@@ -19,6 +21,7 @@
         "firebase/php-jwt": "^6.11.1"
     },
     "require-dev": {
+        "decodelabs/chorus": "^0.1",
         "decodelabs/dovetail": "^0.3",
         "decodelabs/harvest": "^0.7",
         "decodelabs/phpstan-decodelabs": "^0.7"
