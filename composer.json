@@ -2,7 +2,7 @@
     "name": "decodelabs/cipher",
     "description": "Tools and systems to interact with JWTs",
     "type": "library",
-    "keywords": [],
+    "keywords": [ ],
     "license": "MIT",
     "authors": [
         {
@@ -21,7 +21,7 @@
         "firebase/php-jwt": "^6.11.1"
     },
     "require-dev": {
-        "decodelabs/chorus": "^0.1",
+        "decodelabs/chorus": ">0",
         "decodelabs/dovetail": "^0.3",
         "decodelabs/harvest": "^0.7",
         "decodelabs/phpstan-decodelabs": "^0.7"
