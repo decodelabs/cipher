@@ -5,7 +5,15 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## Unreleased
+--
+
+---
+
+### [v0.3.3](https://github.com/decodelabs/cipher/commits/v0.3.3) - 16th November 2026
+
 - Preserve empty-string payload offsets for null ArrayAccess keys on PHP 8.5
+
+[Full list of changes](https://github.com/decodelabs/cipher/compare/v0.3.2...v0.3.3)
 
 ---
 
