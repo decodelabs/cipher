@@ -107,41 +107,41 @@ trait PayloadTrait
 
 
     /**
-     * @param string $offset
+     * @param string|null $offset
      */
     public function offsetExists(
         mixed $offset
     ): bool {
-        return array_key_exists($offset, $this->data);
+        return array_key_exists($offset ?? '', $this->data);
     }
 
     /**
-     * @param string $offset
+     * @param string|null $offset
      */
     public function offsetGet(
         mixed $offset
     ): mixed {
-        return $this->data[$offset] ?? null;
+        return $this->data[$offset ?? ''] ?? null;
     }
 
     /**
-     * @param string $offset
+     * @param string|null $offset
      * @param mixed $value
      */
     public function offsetSet(
         mixed $offset,
         mixed $value
     ): void {
-        $this->data[$offset] = $value;
+        $this->data[$offset ?? ''] = $value;
     }
 
     /**
-     * @param string $offset
+     * @param string|null $offset
      */
     public function offsetUnset(
         mixed $offset
     ): void {
-        unset($this->data[$offset]);
+        unset($this->data[$offset ?? '']);
     }
 
 
